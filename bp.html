@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Patient Information</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="icon" href="CHANGE THIS">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shoelace-css/1.0.0-beta16/shoelace.css">
+        <link rel="stylesheet" href="main.css">
+        <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <nav>
+            <div class="left-form"><a href="bp.html"><p >Record Blood Pressure</p></a></div>
+            <div class="right-form"><a href="CHANGE THIS"><p >View Blood Pressure</p></a></div>
+        </nav>
+
+        <div class="container">
+
+            <!-- <img class = "center" src = "CHANGE THIS" height = "100", width = "400"> -->
+
+            <div class="app">
+                <h3>Record Blood Pressure</h3>
+                <button id="start-record-btn" title="Start Recording">Record</button>
+                <button id="clear-record-btn" title="Pause Recording">Clear</button>
+                <p id="recording-instructions">Press <strong>Record</strong> and allow access.</p>
+                <div class="input-single">
+                    <textarea id="note-textarea" placeholder="Blood Pressure Readings" rows="6"></textarea>
+                </div>
+                <div class="input-single"><button id="save-note-btn" title="Save Reading">Save Reading</button></div>
+                <br>
+                <h3>My Blood Pressure Readings</h3>
+                <ul id="notes">
+                    <li>
+                        <p class="content">You don't have any prior blood pressure readings.</p>
+                    </li>
+                </ul>
+                <div class="sign-out-container">
+                    <button id="sign-out" title="Sign Out">Sign Out</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

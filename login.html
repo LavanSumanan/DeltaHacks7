@@ -5,55 +5,94 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html lang="en">
-	<head>
-		<title>Hackathon by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="./main.css" />
-	</head>
-	<body class="landing is-preload">
-		<div id="page-wrapper">
-			<!-- Header -->
-				<header id="header" class="alt">
-					<h1><a href="index.html">Website Name</a> by DeltaHacks</h1>
-					
-				</header>
-			
-			<!-- CTA -->
-				<section id="cta" action="login.php">
-					
-					<h2>Sign in to your account</h2>
-					<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
-					
 
-					<form>
-						<div class="row gtr-50 gtr-uniform">
-							<div class="off-8 col-12-mobilep">
-								<input type="username" name="username" id="username" placeholder="username" />
-							</div>
-							<div class="off-8 col-12-mobilep">
-								<input type="password" name="password" id="password" placeholder="password" />
-							</div>
-							<div class="row col-12">
-								<ul><input type="submit" value="Log In" class="button alt fit"></ul>
-							</div>
-						</div>
-					</form>
+<head>
+	<title>Hackathon by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
 
-				</section>
+<body class="landing is-preload">
+	<div id="page-wrapper">
+		<!-- Header -->
+		<header id="header" class="alt">
+			<h1><a href="login.html">Website Name</a> by DeltaHacks</h1>
 
-			
+		</header>
 
-		</div>
+		<!-- CTA -->
+		<section id="cta" class="contact-form">
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<h2>Sign in to your account</h2>
+			<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
 
-	</body>
+
+			<form>
+				<div class="row gtr-50 gtr-uniform">
+					<div class="off-8 col-12-mobilep">
+						<input type="username" name="username" id="username" placeholder="username" />
+					</div>
+					<div class="off-8 col-12-mobilep">
+						<input type="password" name="password" id="password" placeholder="password" />
+					</div>
+					<div class="row col-12">
+						<ul><button type="submit" class="button alt fit">Log In</button></ul>
+					</div>
+				</div>
+			</form>
+
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script>
+		function handleFormSubmit(event) {
+
+			event.preventDefault();
+
+			const data = new FormData(event.target);
+
+			const formJSON = Object.fromEntries(data.entries());
+
+			$.ajax({
+				url: "http://138.197.161.135/",
+				type: "POST",
+				dataType: "json",
+				data: formJSON,
+				statusCode: {
+					200: function (your_Response_Data) {
+						console.log(your_Response_Data);
+						// YOUR SERVER'S RESPONSE
+						// you can act on your server's 
+						// response if there will be any
+						// eg. you can send back information to update UI. 
+					},
+					// ... handle errors if required
+					404: function () {
+						// what to do on 404 etc.
+						console.log("404 error");
+					}
+				},
+				//complete: function (jqXHR, textStatus) {
+				// Things to do after everything is completed
+				//}
+			});
+
+			const form = document.querySelector('.contact-form');
+			form.addEventListener('submit', handleFormSubmit);
+
+		}
+	</script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
 </html>
