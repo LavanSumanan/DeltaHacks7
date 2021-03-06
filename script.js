@@ -53,7 +53,7 @@ try {
   }
   
   $('#sign-out').on('click', function(e) {
-    window.location.href = "index.html"
+    window.location.href = "login.html"
   });
   
   $('#start-record-btn').on('click', function(e) {
@@ -87,7 +87,7 @@ try {
           dict["Systolic"]=noteContent.substring(0, noteContent.indexOf("/"));
         }
         if (noteContent.length-1 > noteContent.indexOf("/")) {
-          dict["Diastolic"]=notContent.substring(noteContent.indexOf("/")+ 1);
+          dict["Diastolic"]=noteContent.substring(noteContent.indexOf("/")+ 1);
         }
       }
   
@@ -95,7 +95,8 @@ try {
       saveNote(new Date().toLocaleString(), noteContent);
   
       noteContent = '';
-      dict["Systolic"]= "", dict["Diastolic"]="";
+      dict["Systolic"]= "";
+      dict["Diastolic"]="";
       renderNotes(getAllNotes());
       noteTextarea.val('');
       instructions.text('Blood Pressure Reading saved successfully.');
