@@ -8,13 +8,14 @@
       "persistent": true
     },
     "browser_action": {
-      "default_title": "Blood Pressure Buddy"
+      "default_title": "Blood Pressure Buddy",
+      "default_icon": "extension_logo.png"
     },
       "commands": {
         "_execute_browser_action": {
           "suggested_key": {
-            "default": "Ctrl+Shift+C",
-            "mac": "MacCtrl+Shift+C"
+            "default": "Ctrl+Shift+B",
+            "mac": "MacCtrl+Shift+B"
           }
         }
       },
