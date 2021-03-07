@@ -24,8 +24,8 @@
 							<li>
 								<a href="#">Statistics</a>
 								<ul>
-									<li><a href="monthGraph.html">This Month</a></li>
-									<li><a href="weekGraph.html">This Week</a></li>
+									<li><a href={% url 'home:monthly_view' %}>This Month</a></li>
+									<li><a href={% url 'home:weekly_view' %}>This Week</a></li>
 								</ul>
 							</li>
 							<li><a href={% url 'home:learnMore_view' %}>Learn More</a></li>
