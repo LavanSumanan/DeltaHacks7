@@ -1,14 +1,14 @@
 {
     "manifest_version": 2,
-    "name": "CHANGE THIS",
-    "description":"CHANGE THIS.",
+    "name": "Blood Pressure Buddy",
+    "description":"A blood pressure tracker for seniors.",
     "version": "0.1",
     "background": {
       "scripts": ["background.js"],
       "persistent": true
     },
     "browser_action": {
-      "default_title": "CHANGE THIS"
+      "default_title": "Blood Pressure Buddy"
     },
       "commands": {
         "_execute_browser_action": {
