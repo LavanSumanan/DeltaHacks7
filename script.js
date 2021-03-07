@@ -31,7 +31,6 @@ document.getElementById('language-picker-select').addEventListener("change", () 
   var e = document.getElementById("language-picker-select");
   var text = e.options[e.selectedIndex].lang
   recognition.lang = document.getElementById(text);
-  console.log(text);
 });
 
 recognition.onresult = function (event) {
