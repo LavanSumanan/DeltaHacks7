@@ -1,7 +1,12 @@
 <!DOCTYPE HTML>
 <html>
-<head> 
-
+<head>
+<!--
+  <title>Home - Alpha by HTML5 UP</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+-->
 <link rel="stylesheet" href="monthGraph.css">
 
 <style>
@@ -35,14 +40,14 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		visible: false,
 		showInLegend: true,
 		name: "hide1",
-		
+
 	},
 	{
-		type: "spline", 
+		type: "spline",
 		showInLegend: true,
 		visible: false,
 		name: "hide2",
-		
+
 	},
 	{
 		type: "spline",
@@ -81,7 +86,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		]
 	},
 	{
-		type: "spline", 
+		type: "spline",
 		showInLegend: true,
 		name: "Systolic",
 		dataPoints: [
@@ -118,7 +123,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		]
 	},
 	{
-		type: "spline", 
+		type: "spline",
 		showInLegend: true,
 		name: "Diastolic",
 		dataPoints: [
@@ -155,12 +160,12 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		]
 	},
 	{
-		type: "spline", 
+		type: "spline",
 		showInLegend: true,
 		name: "Season 7",
 	},
           {
-		type: "spline", 
+		type: "spline",
 		showInLegend: true,
 		name: "Season 8",
 	}]
@@ -180,6 +185,21 @@ function toggleDataSeries(e) {
 </script>
 </head>
 <body>
+
+  <!-- Header -->
+    <header id="header">
+      <h1><a href="index.html">Home</a> by HTML5 UP</h1>
+      <nav id="nav">
+        <ul>
+          <li><a href="generic.html">Home</a></li>
+          <li><a href="bp.html">Add Data</a></li>
+          <li><a href="monthGraph.html">Statistics</a></li>
+          <li><a href="learnmore.html">Learn More</a></li>
+
+        </ul>
+      </nav>
+    </header>
+
 <div class="row" id="chartContainer" style="height: 600px; width: 1000px; margin: auto;"></div>
 <div class="row" style="padding-top: 10px;">
 	<h1>Trend: Decreasing -- Keep up the good work!</h1>
