@@ -1,163 +1,183 @@
 try {
-    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    var recognition = new SpeechRecognition();
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var recognition = new SpeechRecognition();
+}
+catch (e) {
+  console.error(e);
+  $('.no-browser-support').show();
+  $('.app').hide();
+}
+
+var noteTextarea = $('#note-textarea');
+var instructions = $('#recording-instructions');
+var notesTable = $('table#notes');
+
+var noteContent = '';
+var noteMeaning = '';
+
+var notes = getAllNotes();
+renderNotes(notes);
+
+var dict = {
+  Systolic: "",
+  Diastolic: ""
+};
+
+recognition.continuous = true;
+
+recognition.onresult = function (event) {
+
+  var current = event.resultIndex;
+
+  var transcript = event.results[current][0].transcript;
+
+  var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+
+  if (!mobileRepeatBug) {
+    noteContent += transcript;
+    noteTextarea.val(noteContent);
   }
-  catch(e) {
-    console.error(e);
-    $('.no-browser-support').show();
-    $('.app').hide();
+};
+
+recognition.onstart = function () {
+  instructions.text('Recording.');
+}
+
+recognition.onspeechend = function () {
+  instructions.text('Voice recognition has been paused.');
+}
+
+recognition.onerror = function (event) {
+  if (event.error == 'no-speech') {
+    instructions.text('No speech was detected. Try again.');
+  }
+}
+
+$('#sign-out').on('click', function (e) {
+  window.location.href = "login.html"
+});
+
+$('#start-record-btn').on('click', function (e) {
+  if (noteContent.length) {
+    noteContent += ' ';
+  }
+  recognition.start();
+});
+
+$('#pause-record-btn').on('click', function (e) {
+  recognition.stop();
+  instructions.text('Voice recognition has been paused.');
+});
+
+$('#clear-record-btn').on('click', function (e) {
+  recognition.stop();
+  instructions.text('Your reading has been cleared.');
+  noteTextarea.val('');
+  noteContent = '';
+});
+
+noteTextarea.on('input', function () {
+  noteContent = $(this).val();
+})
+
+$('#save-note-btn').on('click', function (e) {
+  recognition.stop();
+  const regex = /[0-9]\d*/g;
+  const matches = noteContent.match(regex);
+
+  if (!noteContent.length) {
+    instructions.text('Could not save empty reading. Please add a reading and try again.');
+  } else if (!matches) {
+    instructions.text('Invalid reading. Please click "Record" again.');
+  } else {
+    dict["Systolic"] = matches[0];
+    dict["Diastolic"] = matches[1];
   }
 
-  var noteTextarea = $('#note-textarea');
-  var instructions = $('#recording-instructions');
-  var notesList = $('ul#notes');
-  
-  var noteContent = '';
-  
-  var notes = getAllNotes();
-  renderNotes(notes);
-  
-  var dict = {
-    Systolic: "",
-    Diastolic: ""
-  };
-  
-  recognition.continuous = true;
-  
-  recognition.onresult = function(event) {
-  
-    var current = event.resultIndex;
-  
-    var transcript = event.results[current][0].transcript;
-  
-    var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
-  
-    if(!mobileRepeatBug) {
-      noteContent += transcript;
-      noteTextarea.val(noteContent);
-    }
-  };
-  
-  recognition.onstart = function() { 
-    instructions.text('Say your blood pressure reading into the microphone. Example: \"one hundred and twenty over eighty\"');
+  noteMeaning = getMeaning(dict["Systolic"], dict["Diastolic"]);
+  noteContent = "Systolic: " + dict["Systolic"] + " \| Diastolic: " + dict["Diastolic"] + "*" + noteMeaning;
+  saveNote(new Date().toLocaleString(), noteContent);
+
+  noteContent = '';
+  noteMeaning = '';
+  dict["Systolic"] = "";
+  dict["Diastolic"] = "";
+  renderNotes(getAllNotes());
+  noteTextarea.val('');
+  instructions.text('Blood Pressure Reading saved successfully.');
+
+})
+
+notesTable.on('click', function (e) {
+  e.preventDefault();
+  var target = $(e.target);
+
+  if (target.hasClass('delete-note')) {
+    var dateTime = target.siblings('.date').text();
+    deleteNote(dateTime);
+    target.closest('.note').remove();
   }
-  
-  recognition.onspeechend = function() {
-    instructions.text('You were quiet for a while so voice recognition turned itself off.');
+});
+
+function renderNotes(notes) {
+  var html =
+  `<tr>
+    <td>Date</td>
+    <td>Reading</td>
+    <td>Meaning</td>
+  </tr>`;
+  if (notes.length) {
+    notes.forEach(function (note) {
+      html += `<tr class="note">
+      <td class="header">
+        <span class="date">${note.date}</span>
+        <a href="#" class="delete-note" title="Delete">Delete</a>
+      </td>
+      <td class="content">${note.content}</td>
+      <td class="meaning">${note.meaning}</td>
+    </tr>`;
+    });
   }
-  
-  recognition.onerror = function(event) {
-    if(event.error == 'no-speech') {
-      instructions.text('No speech was detected. Try again.');  
-    }
-  }
-  
-  $('#sign-out').on('click', function(e) {
-    window.location.href = "login.html"
-  });
-  
-  $('#start-record-btn').on('click', function(e) {
-    if (noteContent.length) {
-      noteContent += ' ';
-    }
-    recognition.start();
-  });
-  
-  
-  $('#clear-record-btn').on('click', function(e) {
-    recognition.stop();
-    instructions.text('Your reading has been cleared.');
-    noteTextarea.val('');
-    noteContent = '';
-  });
-  
-  noteTextarea.on('input', function() {
-    noteContent = $(this).val();
-  })
-  
-  $('#save-note-btn').on('click', function(e) {
-    recognition.stop();
-  
-    if(!noteContent.length) {
-      instructions.text('Could not save empty reading. Please add a reading and try again.');
-    }
-    else {
-      if (noteContent.indexOf("/") != -1) {
-        if(noteContent.indexOf("/") > 1) {
-          dict["Systolic"]=noteContent.substring(0, noteContent.indexOf("/"));
-        }
-        if (noteContent.length-1 > noteContent.indexOf("/")) {
-          dict["Diastolic"]=noteContent.substring(noteContent.indexOf("/")+ 1);
-        }
-      }
-  
-      noteContent = "Systolic: " + dict["Systolic"] + " \| Diastolic: " + dict["Diastolic"];
-      saveNote(new Date().toLocaleString(), noteContent);
-  
-      noteContent = '';
-      dict["Systolic"]= "";
-      dict["Diastolic"]="";
-      renderNotes(getAllNotes());
-      noteTextarea.val('');
-      instructions.text('Blood Pressure Reading saved successfully.');
-    }
-        
-  })
-  
-  
-  notesList.on('click', function(e) {
-    e.preventDefault();
-    var target = $(e.target);
-  
-    if(target.hasClass('delete-note')) {
-      var dateTime = target.siblings('.date').text();  
-      deleteNote(dateTime);
-      target.closest('.note').remove();
-    }
-  });
-  
-  function renderNotes(notes) {
-    var html = '';
-    if(notes.length) {
-      notes.forEach(function(note) {
-        html+= `<li class="note">
-          <p class="header">
-            <span class="date">${note.date}</span>
-            <a href="#" class="delete-note" title="Delete">Delete</a>
-          </p>
-          <p class="content">${note.content}</p>
-        </li>`;
+  notesTable.html(html);
+}
+
+function saveNote(dateTime, content) {
+  localStorage.setItem('note-' + dateTime, content);
+}
+
+function getAllNotes() {
+  var notes = [];
+  var key;
+  for (var i = 0; i < localStorage.length; i++) {
+    key = localStorage.key(i);
+    console.log(localStorage.getItem(localStorage.key(i)));
+    if (key.substring(0, 5) == 'note-') {
+      notes.push({
+        date: key.replace('note-', ''),
+        content: localStorage.getItem(localStorage.key(i)).substring(0,localStorage.getItem(localStorage.key(i)).indexOf("*")),
+        meaning: localStorage.getItem(localStorage.key(i)).substring(localStorage.getItem(localStorage.key(i)).indexOf("*")+1)
       });
     }
-    else {
-      html = '<li><p class="content">You don\'t have any prior patient information.</p></li>';
-    }
-    notesList.html(html);
-  }
-  
-  
-  function saveNote(dateTime, content) {
-    localStorage.setItem('note-' + dateTime, content);
-  }
-  
-  
-  function getAllNotes() {
-    var notes = [];
-    var key;
-    for (var i = 0; i < localStorage.length; i++) {
-      key = localStorage.key(i);
-  
-      if(key.substring(0,5) == 'note-') {
-        notes.push({
-          date: key.replace('note-',''),
-          content: localStorage.getItem(localStorage.key(i))
-        });
-      } 
-    }
-    return notes;
-  }
-  
-  
-  function deleteNote(dateTime) {
-    localStorage.removeItem('note-' + dateTime); 
-  }
+  }  
+  notes.sort(function (a, b) {
+    return b.date.localeCompare(a.date);
+  });
+  return notes;
+}
+
+function getMeaning(systole, diastole) {
+  if (systole < 90 && diastole < 60)
+    return "Medium to High Risk";
+  else if ( (systole >= 90 && systole <= 120) && (diastole >= 50 && diastole <= 80) )
+    return "Low Risk";
+  else if ( (systole > 120 && systole < 140) && (diastole > 80 && diastole < 90) )
+    return "Medium Risk❗️";
+  else if (systole >= 140 && diastole >= 90)
+    return "❗️High Risk❗️";
+  else
+    return "Faulty reading. Try BP test again.";
+}
+
+function deleteNote(dateTime) {
+  localStorage.removeItem('note-' + dateTime);
+}

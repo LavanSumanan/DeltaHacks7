@@ -16,27 +16,20 @@
 
 <body>
 
-  <!-- Header -->
+    <!-- Header -->
     <header id="header">
-      <h1><a href="index.html">Home</a> by HTML5 UP</h1>
-      <nav id="nav">
-        <ul>
-          <li><a href="generic.html">Home</a></li>
-          <li><a href="bp.html">Add Data</a></li>
-          <li>
-            <a href="#">Statistics</a>
+        <h1>Home by HTML5 UP</h1>
+        <nav id="nav">
             <ul>
-              <li><a href="monthGraph.html">This Month</a></li>
-              <li><a href="weekGraph.html">This Week</a></li>
-            </ul>
-          </li>
-          <li><a href="learnmore.html">Learn More</a></li>
-
-        </ul>
-      </nav>
                 <li><a href="generic.html">Home</a></li>
                 <li><a href="bp.html">Add Data</a></li>
-                <li><a href="monthGraph.html">Statistics</a></li>
+                <li>
+                    <a href="#">Statistics</a>
+                    <ul>
+                        <li><a href="monthGraph.html">This Month</a></li>
+                        <li><a href="weekGraph.html">This Week</a></li>
+                    </ul>
+                </li>
                 <li><a href="learnmore.html">Learn More</a></li>
 
             </ul>
@@ -50,19 +43,21 @@
         <div class="app">
             <h3>Record Blood Pressure</h3>
             <button id="start-record-btn" title="Start Recording">Record</button>
-            <button id="clear-record-btn" title="Pause Recording">Clear</button>
-            <p id="recording-instructions">Press <strong>Record</strong> and allow access.</p>
+            <button id="pause-record-btn" title="Pause Recording">Pause</button>
+            <button id="clear-record-btn" title="Clear Recording">Clear</button>
+            <button id="save-note-btn" title="Save Recording">Save</button>
+            <p id="recording-instructions">Click "Record" and say your blood pressure reading. Example: <em>"one hundred and twenty over eighty"</em>. <br>Click "Pause"
+to pause recording.<br> Click "Clear" to wipe the recording.<br> Click "Save" to save the recording.</p>
             <div class="input-single">
-                <textarea id="note-textarea" placeholder="Blood Pressure Readings" rows="6"></textarea>
+                <textarea id="note-textarea" placeholder='Click "Record" and allow access to begin.' rows="6"></textarea>
             </div>
-            <div class="input-single"><button id="save-note-btn" title="Save Reading">Save Reading</button></div>
             <br>
             <h3>My Blood Pressure Readings</h3>
-            <ul id="notes">
-                <li>
-                    <p class="content">You don't have any prior blood pressure readings.</p>
-                </li>
-            </ul>
+
+            <table id="notes">
+                
+            </table>
+            
             <div class="sign-out-container">
                 <button id="sign-out" title="Sign Out">Sign Out</button>
             </div>
