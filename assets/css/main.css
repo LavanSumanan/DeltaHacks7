@@ -78,6 +78,10 @@
 		appearance: none;
 	}
 
+	#chartContainer {
+		margin: auto;
+	}
+
 /* Basic */
 
 	@-ms-viewport {
@@ -2951,6 +2955,19 @@
 		top: 0;
 		width: 100%;
 		z-index: 10000;
+	}
+	
+	#home-list h1 {
+		margin: auto;
+		background-color: white;
+		width: 945px;
+		height: 50px;
+		padding: 30px;
+		padding-top: 30px;
+		border-radius: 25px;
+		text-align: center;
+		font-size: 38px;
+		font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 	}
 
 		#header h1 {
