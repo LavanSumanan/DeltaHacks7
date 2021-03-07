@@ -37,23 +37,22 @@
     </header>
 
     <section id="main" class="container">
-        <header>
+        <header style="margin:0 0 1em 0">
             <h2>Record Blood Pressure</h2>
             <button class="button" id="start-record-btn" title="Start Recording">Record</button>
             <button class="button" id="pause-record-btn" title="Pause Recording">Pause</button>
             <button class="button" id="clear-record-btn" title="Clear Recording">Clear</button>
             <br>
-            <p id="recording-instructions">
+            <p id="recording-instructions" style="text-align: left; padding-bottom: 0;">
                 Click "Record" and say your blood pressure reading. Example: <em>"one hundred and twenty over
                     eighty"</em>.<br>
                 Click "Pause" to pause recording.<br>
                 Click "Clear" to wipe the recording.<br>
-                Click "Save" to save the recording.
             </p>
         </header>
 
         <div class="box">
-            <textarea id="note-textarea" placeholder='Click "Record" and allow access to begin.' rows="6"></textarea>
+            <textarea id="note-textarea" placeholder='Click "Save Reading" (below) once finished.' rows="6"></textarea>
             <br>
         </div>
         <button class="button large" id="save-note-btn" title="Save Reading">Save Reading</button>
