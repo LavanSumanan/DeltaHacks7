@@ -4,49 +4,47 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-	{% load static %}
-	{% block css %}
+<html>
+	<head>
+		<title> Blood Pressure Buddy</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-	{% endblock %}
-
-	{% block middle_column %}
-	<title> Blood Pressure Buddy</title>
-		<body class="is-preload">
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
 		<div id="page-wrapper">
 
       <!-- Header -->
 				<header id="header">
+					<h1><span class="image left"><img src="images/Logo.png" alt="" /></span> Blood Pressure Buddy</h1>
 					<nav id="nav">
 						<ul>
-							<li><a href={% url 'home:home_view' %}>Home</a></li>
-							<li><a href={% url 'home:addData_view' %}>Add Data</a></li>
+							<li><a href="generic.html">Home</a></li>
+							<li><a href="bp.html">Add Data</a></li>
 							<li>
-								<a href="#">Statistics</a>
+								<a href="#" class="icon solid fa-angle-down">Statistics</a>
 								<ul>
-									<li><a href={% url 'home:monthly_view' %}>This Month</a></li>
-                                                                        <li><a href={% url 'home:weekly_view' %}>This Week</a></li>
+									<li><a href="monthGraph.html">This Month</a></li>
+									<li><a href="weekGraph.html">This Week</a></li>
 								</ul>
 							</li>
-							<li><a href={% url 'home:learnMore_view' %}>Learn More</a></li>
+							<li><a href="learnmore.html">Learn More</a></li>
 
 						</ul>
 					</nav>
 				</header>
 
 			<!-- Main -->
-<!-- Main -->
-                                <section id="main" class="container">
-                                        <header>
-                                                <h2>Learn More</h2>
-                                                <p> </p>
-                                        </header>
-                                        <div class="box">
-                                                <h3>Active Living</h3>
+				<section id="main" class="container">
+					<header>
+						<h2>Learn More</h2>
+						<p> </p>
+					</header>
+					<div class="box">
+						<h3>Active Living</h3>
             <div class="row">
               <div class="row-6 row-12-mobilep">
-		      <p>     <p><span class="image fit "><img src={% static 'images/Excercise.png' %} alt=""/></span>Staying active is a great way to maintain a healthy lifestyle! Here are some ways to stay active.
+                <p> 	<p><span class="image fit "><img src="images/Excercise.png" alt=""/></span>Staying active is a great way to maintain a healthy lifestyle! Here are some ways to stay active.
 <br>
                        - Go for walks outdoors <br>
                        - Join a community walking or exercising group
@@ -58,7 +56,7 @@
             <h3>Diet</h3>
             <div class="row">
               <div class="row-6 row-12-mobilep">
-		      <p> <p><span class="image fit "><img src={% static 'images/Food.png' %} alt=""/></span>Here are some dietary recommendations from the Heart and Stroke Foundation to improve blood pressure!
+                <p> <p><span class="image fit "><img src="images/Food.png" alt=""/></span>Here are some dietary recommendations from the Heart and Stroke Foundation to improve blood pressure!
                     <br>
                        - Reduce salt intake! (less than 1 teaspoon a day) <br>
                        - Fill half your plate with fruits and vegetables at each meal <br>
@@ -71,7 +69,7 @@
               <h3>Medication</h3>
               <div class="row">
                 <div class="row-6 row-12-mobilep">
-			<p> <p><span class="image fit ><img src={% static 'images/Pills.png' %} alt=""/></span> If you have been prescribed with blood pressure medication, be sure to take it as often as prescribed by your doctor.
+                  <p> <p><span class="image fit "><img src="images/Pills.png" alt=""/></span> If you have been prescribed with blood pressure medication, be sure to take it as often as prescribed by your doctor.
 
 
                 </div>
@@ -83,7 +81,7 @@
                 <thead>
                   <tr>
                     <th>Risk Level</th>
-		    <th>Blood Pressure Reading</th>
+                    <th>Blood Pressure Reading</th>
                     <th>Notes</th>
                   </tr>
                 </thead>
@@ -111,19 +109,15 @@
                         <li> 140+/90+ measured by a health practitioner </li>
                         <ul> </ul>
                         <ul> For people with diabetes, 130/80  is considered</ul>
-		    </td>
+                    </td>
                   </tr>
-                                  </div>
+				  </div>
 
-                          </section>
+			  </section>
 
 
+		</div>
 
-	        <script src={% static 'assets/js/jquery.min.js' %}></script>
-                <script src={% static 'assets/js/jquery.dropotron.min.js' %}></script>
-                <script src={% static 'assets/js/jquery.scrollex.min.js' %}></script>
-                <script src={% static 'assets/js/browser.min.js' %}></script>
-                <script src={% static 'assets/js/breakpoints.min.js' %}></script>
-                <script src={% static 'assets/js/util.js' %}></script>
-                <script src={% static 'assets/js/main.js' %}></script>
-	{% endblock %}
+
+	</body>
+</html>

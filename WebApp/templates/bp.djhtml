@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+
+    {% load static %}
+    {% block css %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="CHANGE THIS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shoelace-css/1.0.0-beta16/shoelace.css">
+    <link rel="stylesheet" href={% static 'assets/css/main.css' %}>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+    {% endblock %}
+
+
+    {% block middle_column %}
+<body>
+
+    <title>Patient Information</title>
+    <!-- Header -->
+    <header id="header">
+	    <h1><span class="image left"><img src={% static 'images/Logo.png' %} alt="" width=75px /></span> Blood Pressure Buddy</h1>
+        <nav id="nav">
+            <ul>
+		    <li><a href={% url 'home:home_view' %}>Home</a></li>
+		    <li><a href={% url 'home:addData_view' %}>Add Data</a></li>
+                <li>
+                    <a href="#" class="icon solid fa-angle-down">Statistics</a>
+                    <ul>
+			    <li><a href={% url 'home:monthly_view' %}>This Month</a></li>
+			    <li><a href={% url 'home:weekly_view' %}>This Week</a></li>
+                    </ul>
+                </li>
+		<li><a href={% url 'home:learnMore_view' %}>Learn More</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section id="main" class="container">
+        <header style="margin:0 0 1em 0">
+            <h2>Record Blood Pressure</h2>
+            <button class="button large" id="start-record-btn" title="Start Recording">Record</button>
+            <button class="button large" id="pause-record-btn" title="Pause Recording">Pause</button>
+            <button class="button large" id="clear-record-btn" title="Clear Recording">Clear</button>
+            <div class="language-picker js-language-picker">
+                <form action="" class="language-picker__form">
+                  <label for="language-picker-select">Select your language</label>
+                  <select name="language-picker-select" id="language-picker-select">
+                    <option lang="en-US" value="english" selected>English</option>
+                    <option lang="fr-CA" value="francais">Français</option>
+                  </select>
+                </form>
+              </div>
+            <br>
+        </header>
+
+
+        <p id="recording-instructions" style="text-align: left; padding-bottom: 0;">
+            Click "Record" and say your blood pressure reading. Example: <em>"one hundred and twenty over
+                eighty"</em>.<br>
+            Click "Pause" to pause recording.<br>
+            Click "Clear" to wipe the recording.<br>
+        </p>
+        <div class="box">
+            <textarea id="note-textarea" placeholder='Click "Save Reading" (below) once finished.' rows="6"></textarea>
+            <br>
+        </div>
+        <button class="button large" id="save-note-btn" title="Save Reading">Save Reading</button>
+
+        <br><br>
+
+        <h3>My Blood Pressure Readings</h3>
+
+        <div class="box">
+            <table id="notes"></table>
+        </div>
+
+        <div class="sign-out-container">
+            <button class="button large" id="sign-out" title="Sign Out">Sign Out</button>
+        </div>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src={% static 'script.js' %}></script>
+</body>
+
+                <script src={% static 'assets/js/jquery.min.js' %}></script>
+                <script src={% static 'assets/js/jquery.dropotron.min.js' %}></script>
+                <script src={% static 'assets/js/jquery.scrollex.min.js' %}></script>
+                <script src={% static 'assets/js/browser.min.js' %}></script>
+                <script src={% static 'assets/js/breakpoints.min.js' %}></script>
+                <script src={% static 'assets/js/util.js' %}></script>
+                <script src={% static 'assets/js/main.js' %}></script>
+
+{% endblock %}
+

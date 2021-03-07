@@ -13,8 +13,8 @@ def home_view(request):
         return render(request, 'generic.djhtml', context)
     return redirect('login:login_view')
 
-#def addData_view(request):
-    #return render(request, 'generic.djhtml', context)
+def addData_view(request):
+    return render(request, 'bp.djhtml')
 
 def weekly_view(request):
     user_info = models.UserInfo.objects.get(user=request.user)
