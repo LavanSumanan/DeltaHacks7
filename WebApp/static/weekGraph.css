@@ -1,0 +1,16 @@
+#chartContainer {
+    margin: auto;
+}
+
+h1 {
+    margin: auto;
+    background-color: white;
+    width: 945px;
+    height: 60px;
+    padding: 30px;
+    padding-top: 30px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 40px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}

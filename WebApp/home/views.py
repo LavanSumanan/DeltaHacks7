@@ -16,8 +16,20 @@ def home_view(request):
 #def addData_view(request):
     #return render(request, 'generic.djhtml', context)
 
-#def stats_view(request):
-    #return render(request, 'generic.djhtml', context)
+def weekly_view(request):
+    user_info = models.UserInfo.objects.get(user=request.user)
+    if request.user.is_authenticated:
+        context = { 'user_info' : user_info}
+        return render(request, 'generic.djhtml', context)
+    return redirect('login:login_view')
+
+def monthly_view(request):
+    user_info = models.UserInfo.objects.get(user=request.user)
+    if request.user.is_authenticated:
+        context = { 'user_info' : user_info}
+        return render(request, 'generic.djhtml', context)
+    return redirect('login:login_view')
+
 
 def learnMore_view(request):
     user_info = models.UserInfo.objects.get(user=request.user)
