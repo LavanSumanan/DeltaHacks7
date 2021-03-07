@@ -111,10 +111,10 @@
 	body, input, select, textarea {
 		color: #777;
 		font-family: "Source Sans Pro", sans-serif;
-		font-size: 16pt;
-		font-weight: 300;
-		line-height: 1.65em;
-		letter-spacing: -0.015em;
+		font-size: 20pt;
+		font-weight: 500;
+		line-height: 2em;
+		letter-spacing: 0.015em;
 	}
 
 	a {
@@ -2803,7 +2803,7 @@
 		input[type="reset"].fit,
 		input[type="button"].fit,
 		.button.fit {
-			width: 175%;
+			width: 165%;
 		}
 
 		input[type="submit"].small,
@@ -3318,7 +3318,7 @@
         	margin: 20 0 0 450px;
         	padding: 10px;
         	background: #f7bfad;
-        	border-radius: 15px ;
+        	border-radius: 50px;
 
 	}
 	body{
@@ -3326,6 +3326,7 @@
     		padding: 200px;
     		background-color:#f7bfad;
     		font-family: 'Helvetica';
+				border-radius: 15px;
 	}
 
 
@@ -3337,6 +3338,7 @@
 		color: #f9e6df;
 		padding: 3.5em 0 4em 0;
 		text-align: center;
+		border-radius: 15px;
 	}
 
 		#cta h2, #cta h3, #cta h4, #cta h5, #cta h6 {
