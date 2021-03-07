@@ -168,12 +168,12 @@ function getAllNotes() {
 function getMeaning(systole, diastole) {
   if (systole < 90 && diastole < 60)
     return "Medium to High Risk";
-  else if ( (systole >= 90 && systole <= 120) && (diastole >= 50 && diastole <= 80) )
-    return "Low Risk";
-  else if ( (systole > 120 && systole < 140) && (diastole > 80 && diastole < 90) )
-    return "Medium Risk❗️";
-  else if (systole >= 140 && diastole >= 90)
+  else if (systole >= 140 || diastole >= 90)
     return "❗️High Risk❗️";
+  else if ( (systole > 120 && systole < 140) || (diastole > 80 && diastole < 90) )
+    return "Medium Risk❗️";
+  else if ( (systole >= 90 && systole <= 120) || (diastole >= 50 && diastole <= 80) )
+    return "Low Risk";
   else
     return "Faulty reading. Try BP test again.";
 }
