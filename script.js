@@ -25,6 +25,15 @@ var dict = {
 
 recognition.continuous = true;
 
+recognition.lang = 'en-US';
+
+document.getElementById('language-picker-select').addEventListener("change", () => {
+  var e = document.getElementById("language-picker-select");
+  var text = e.options[e.selectedIndex].lang
+  recognition.lang = document.getElementById(text);
+  console.log(text);
+});
+
 recognition.onresult = function (event) {
 
   var current = event.resultIndex;
@@ -121,7 +130,7 @@ notesTable.on('click', function (e) {
 
 function renderNotes(notes) {
   var html =
-  `<tr>
+    `<tr>
     <td>Date</td>
     <td>Reading</td>
     <td>Meaning</td>
@@ -150,15 +159,14 @@ function getAllNotes() {
   var key;
   for (var i = 0; i < localStorage.length; i++) {
     key = localStorage.key(i);
-    console.log(localStorage.getItem(localStorage.key(i)));
     if (key.substring(0, 5) == 'note-') {
       notes.push({
         date: key.replace('note-', ''),
-        content: localStorage.getItem(localStorage.key(i)).substring(0,localStorage.getItem(localStorage.key(i)).indexOf("*")),
-        meaning: localStorage.getItem(localStorage.key(i)).substring(localStorage.getItem(localStorage.key(i)).indexOf("*")+1)
+        content: localStorage.getItem(localStorage.key(i)).substring(0, localStorage.getItem(localStorage.key(i)).indexOf("*")),
+        meaning: localStorage.getItem(localStorage.key(i)).substring(localStorage.getItem(localStorage.key(i)).indexOf("*") + 1)
       });
     }
-  }  
+  }
   notes.sort(function (a, b) {
     return b.date.localeCompare(a.date);
   });
@@ -170,9 +178,9 @@ function getMeaning(systole, diastole) {
     return "Medium to High Risk";
   else if (systole >= 140 || diastole >= 90)
     return "❗️High Risk❗️";
-  else if ( (systole > 120 && systole < 140) || (diastole > 80 && diastole < 90) )
+  else if ((systole > 120 && systole < 140) || (diastole > 80 && diastole < 90))
     return "Medium Risk❗️";
-  else if ( (systole >= 90 && systole <= 120) || (diastole >= 50 && diastole <= 80) )
+  else if ((systole >= 90 && systole <= 120) || (diastole >= 50 && diastole <= 80))
     return "Low Risk";
   else
     return "Faulty reading. Try BP test again.";
