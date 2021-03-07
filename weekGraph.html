@@ -1,15 +1,70 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
+	<title>
+		Graphs
+	</title>
+	<link rel="stylesheet" href="assets/css/main.css">
 
-<link rel="stylesheet" href="weekGraph.css">
+	<script>
+		window.onload = function () {
+			
+			var chart = new CanvasJS.Chart("chartContainer", {
+				theme: "light2",
+				animationEnabled: true,
+				title: {
+					text: "Blood Pressure This Week"
+				},
+				axisY: {
+					title: "Blood Pressure (mm Hg)",
+				},
+				toolTip: {
+					shared: "true"
+				},
+				legend: {
+					cursor: "pointer",
+					itemclick: toggleDataSeries
+				},
+				data: [
+				{
+					type: "spline",
+					showInLegend: true,
+					name: "Systolic",
+					dataPoints: [
+						{ label: "Sun", y: 152 },
+						{ label: "Mon", y: 155 },
+						{ label: "Tue", y: 157 },
+						{ label: "Wed", y: 160 },
+						{ label: "Thu", y: 168 },
+						{ label: "Fri", y: 170 },
+						{ label: "Sat", y: 174 },
+					]
+				},
+				{
+					type: "spline",
+					showInLegend: true,
+					name: "Diastolic",
+					dataPoints: [
+						{ label: "Sun", y: 95 },
+						{ label: "Mon", y: 97 },
+						{ label: "Tue", y: 98 },
+						{ label: "Wed", y: 99 },
+						{ label: "Thu", y: 103 },
+						{ label: "Fri", y: 104 },
+						{ label: "Sat", y: 106 },
+					]
+				}]
+			});
+			chart.render();
 
-<style>
-    body {background-color: #fad0c3;}
-</style>
-
-<script>
-window.onload = function () {
+			function toggleDataSeries(e) {
+				if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+					e.dataSeries.visible = false;
+				} else {
+					e.dataSeries.visible = true;
+				}
+				chart.render();
+			}
 
 var chart = new CanvasJS.Chart("chartContainer", {
 	theme:"light2",
@@ -27,56 +82,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		cursor:"pointer",
 		itemclick : toggleDataSeries
 	},
-	data: [{
-		type: "spline",
-		visible: false,
-		showInLegend: true,
-		name: "hide1",
-
-	},
-	{
-		type: "spline",
-		showInLegend: true,
-		visible: false,
-		name: "hide2",
-
-	},
-	{
-		type: "spline",
-		visible: false,
-		showInLegend: false,
-		name: "Season 3",
-		dataPoints: [
-			{ label: "01", y: 4.37 },
-			{ label: "02", y: 4.27 },
-			{ label: "03", y: 4.72 },
-			{ label: "04", y: 4.87 },
-			{ label: "100", y: 5.35 },
-			{ label: "06", y: 5.50 },
-			{ label: "07", y: 4.84 },
-			{ label: "08", y: 4.13 },
-			{ label: "09", y: 5.22 },
-			{ label: "10", y: 5.39 }
-		]
-	},
-	{
-		type: "spline",
-      	visible: false,
-		showInLegend: false,
-		name: "Season 4",
-		dataPoints: [
-			{ label: "Ep. 1", y: 6.64 },
-			{ label: "Ep. 2", y: 6.31 },
-			{ label: "Ep. 3", y: 6.59 },
-			{ label: "Ep. 4", y: 6.95 },
-			{ label: "Ep. 5", y: 7.16 },
-			{ label: "Ep. 6", y: 6.40 },
-			{ label: "Ep. 7", y: 7.20 },
-			{ label: "Ep. 8", y: 7.17 },
-			{ label: "Ep. 9", y: 6.95 },
-			{ label: "Ep. 10", y: 7.09 }
-		]
-	},
+	data: [
 	{
 		type: "spline",
 		showInLegend: true,
@@ -104,16 +110,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			{ label: "Fri", y: 104 },
 			{ label: "Sat", y: 106 },
 		]
-	},
-	{
-		type: "spline",
-		showInLegend: true,
-		name: "Season 7",
-	},
-          {
-		type: "spline",
-		showInLegend: true,
-		name: "Season 8",
 	}]
 });
 chart.render();
@@ -126,10 +122,10 @@ function toggleDataSeries(e) {
 	}
 	chart.render();
 }
-
-}
 </script>
+
 </head>
+
 <body>
   <!-- Header -->
     <header id="header">
@@ -157,4 +153,15 @@ function toggleDataSeries(e) {
 </div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
+</html>
+
+
+
+	<div class="row" id="chartContainer" style="height: 600px; width: 1000px; margin: auto;"></div>
+	<div class="row" style="padding-top: 10px;">
+		<h1 id="graph-message">Trend: Increasing -- Consult your doctor.</h1>
+	</div>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
 </html>
