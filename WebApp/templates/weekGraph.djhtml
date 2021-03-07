@@ -1,12 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en">
 
-<head>
+
+	{% load static %}
+	{% block css %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href={% static 'assets/css/main.css' %} />
+	{% endblock %}
+
+	{% block middle_column %}
+	<meta charset="utf-8" />
 	<title>
 		Graphs
 	</title>
-	<link rel="stylesheet" href="assets/css/main.css">
-
 	<script>
 		window.onload = function () {
 
@@ -69,35 +74,41 @@
 		}
 	</script>
 
-</head>
 
 <body>
 	<!-- Header -->
 	<header id="header">
-		<h1>Home by HTML5 UP</h1>
+		<h1><span class="image left"><img src={% static 'images/Logo.png' %} alt="" /></span> Blood Pressure Buddy</h1>
 		<nav id="nav">
 			<ul>
 				<li><a href="generic.html">Home</a></li>
 				<li><a href="bp.html">Add Data</a></li>
 				<li>
-					<a href="#">Statistics</a>
+					<a href="#" class="icon solid fa-angle-down">Statistics</a>
 					<ul>
-						<li><a href="monthGraph.html">This Month</a></li>
-						<li><a href="weekGraph.html">This Week</a></li>
+						<li><a href={% url 'home:monthly_view' %}>This Month</a></li>
+						<li><a href={% url 'home:weekly_view' %}>This Week</a></li>
 					</ul>
 				</li>
-				<li><a href="learnmore.html">Learn More</a></li>
+				<li><a href={% url 'home:learnMore_view' %}>Learn More</a></li>
 
 			</ul>
 		</nav>
 	</header>
 
+
 	<div class="row" id="chartContainer" style="height: 600px; width: 1000px; margin: auto;"></div>
 	<div class="row" style="padding-top: 10px;">
 		<h1>Trend: Increasing -- Consult your doctor.</h1>
 	</div>
-	<!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
-	<script src="canvas.js"></script>
+	<script src={% static 'canvas.js' %}></script>
 </body>
+                <script src={% static 'assets/js/jquery.min.js' %}></script>
+                <script src={% static 'assets/js/jquery.dropotron.min.js' %}></script>
+                <script src={% static 'assets/js/jquery.scrollex.min.js' %}></script>
+                <script src={% static 'assets/js/browser.min.js' %}></script>
+                <script src={% static 'assets/js/breakpoints.min.js' %}></script>
+                <script src={% static 'assets/js/util.js' %}></script>
+                <script src={% static 'assets/js/main.js' %}></script>
+{% endblock %}
 
-</html>

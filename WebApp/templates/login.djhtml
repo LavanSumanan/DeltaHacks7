@@ -20,8 +20,7 @@
         		<div id="page-wrapper">
                 	<!-- Header -->
                 	<header id="header" class="alt">
-                        	<h1><a href="login.html">Website Name</a> by DeltaHacks</h1>
-
+			<h1><span class="image left"><img src={% static 'images/logo_pink_new.png' %} alt="" /></span> Blood Pressure Buddy</h1>
                 </header>
 
 

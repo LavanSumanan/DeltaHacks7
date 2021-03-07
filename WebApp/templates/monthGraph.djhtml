@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+
+	{% load static %}
+	{% block css %}
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href={% static 'assets/css/main.css' %} />
+	{% endblock %}
+
+	{% block middle_column %}
+	<title> Blood Pressure Buddy</title>
+	<script>
+		window.onload = function () {
+
+			var chart = new CanvasJS.Chart("chartContainer", {
+				theme: "light2",
+				animationEnabled: true,
+				title: {
+					text: "Blood Pressure in April"
+				},
+				axisX: {
+					title: "Date",
+				},
+				axisY: {
+					title: "Blood Pressure (mm Hg)",
+				},
+				toolTip: {
+					shared: "true"
+				},
+				legend: {
+					cursor: "pointer",
+					itemclick: toggleDataSeries
+				},
+				data: [{
+					type: "spline",
+					visible: false,
+					showInLegend: true,
+					name: "hide1",
+
+				},
+				{
+					type: "spline",
+					showInLegend: true,
+					visible: false,
+					name: "hide2",
+
+				},
+				{
+					type: "spline",
+					visible: false,
+					showInLegend: false,
+					name: "Season 3",
+					dataPoints: [
+						{ label: "01", y: 4.37 },
+						{ label: "02", y: 4.27 },
+						{ label: "03", y: 4.72 },
+						{ label: "04", y: 4.87 },
+						{ label: "100", y: 5.35 },
+						{ label: "06", y: 5.50 },
+						{ label: "07", y: 4.84 },
+						{ label: "08", y: 4.13 },
+						{ label: "09", y: 5.22 },
+						{ label: "10", y: 5.39 }
+					]
+				},
+				{
+					type: "spline",
+					visible: false,
+					showInLegend: false,
+					name: "Season 4",
+					dataPoints: [
+						{ label: "Ep. 1", y: 6.64 },
+						{ label: "Ep. 2", y: 6.31 },
+						{ label: "Ep. 3", y: 6.59 },
+						{ label: "Ep. 4", y: 6.95 },
+						{ label: "Ep. 5", y: 7.16 },
+						{ label: "Ep. 6", y: 6.40 },
+						{ label: "Ep. 7", y: 7.20 },
+						{ label: "Ep. 8", y: 7.17 },
+						{ label: "Ep. 9", y: 6.95 },
+						{ label: "Ep. 10", y: 7.09 }
+					]
+				},
+				{
+					type: "spline",
+					showInLegend: true,
+					name: "Systolic",
+					dataPoints: [
+						{ x: 1, y: 152 },
+						{ x: 2, y: 155 },
+						{ x: 3, y: 157 },
+						{ x: 4, y: 160 },
+						{ x: 5, y: 168 },
+						{ x: 6, y: 170 },
+						{ x: 7, y: 174 },
+						{ x: 8, y: 172 },
+						{ x: 9, y: 170 },
+						{ x: 10, y: 168 },
+						{ x: 11, y: 173 },
+						{ x: 12, y: 170 },
+						{ x: 13, y: 171 },
+						{ x: 14, y: 168 },
+						{ x: 15, y: 169 },
+						{ x: 16, y: 167 },
+						{ x: 17, y: 165 },
+						{ x: 18, y: 169 },
+						{ x: 19, y: 164 },
+						{ x: 20, y: 163 },
+						{ x: 21, y: 165 },
+						{ x: 22, y: 162 },
+						{ x: 23, y: 161 },
+						{ x: 24, y: 162 },
+						{ x: 25, y: 160 },
+						{ x: 26, y: 159 },
+						{ x: 27, y: 156 },
+						{ x: 28, y: 157 },
+						{ x: 29, y: 155 },
+						{ x: 30, y: 152 },
+					]
+				},
+				{
+					type: "spline",
+					showInLegend: true,
+					name: "Diastolic",
+					dataPoints: [
+						{ x: 1, y: 95 },
+						{ x: 2, y: 97 },
+						{ x: 3, y: 98 },
+						{ x: 4, y: 99 },
+						{ x: 5, y: 103 },
+						{ x: 6, y: 104 },
+						{ x: 7, y: 106 },
+						{ x: 8, y: 105 },
+						{ x: 9, y: 104 },
+						{ x: 10, y: 103 },
+						{ x: 11, y: 106 },
+						{ x: 12, y: 105 },
+						{ x: 13, y: 105 },
+						{ x: 14, y: 104 },
+						{ x: 15, y: 104 },
+						{ x: 16, y: 102 },
+						{ x: 17, y: 101 },
+						{ x: 18, y: 103 },
+						{ x: 19, y: 100 },
+						{ x: 20, y: 100 },
+						{ x: 21, y: 101 },
+						{ x: 22, y: 99 },
+						{ x: 23, y: 99 },
+						{ x: 24, y: 100 },
+						{ x: 25, y: 98 },
+						{ x: 26, y: 98 },
+						{ x: 27, y: 97 },
+						{ x: 28, y: 98 },
+						{ x: 29, y: 97 },
+						{ x: 30, y: 96 },
+					]
+				},
+				{
+					type: "spline",
+					showInLegend: true,
+					name: "Season 7",
+				},
+				{
+					type: "spline",
+					showInLegend: true,
+					name: "Season 8",
+				}]
+			});
+			chart.render();
+
+			function toggleDataSeries(e) {
+				if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+					e.dataSeries.visible = false;
+				} else {
+					e.dataSeries.visible = true;
+				}
+				chart.render();
+			}
+
+		}
+	</script>
+</head>
+
+<body class="is-preload">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><span class="image left" width="10%"><img src={% static 'images/Logo.png' %} alt=""></span> Blood Pressure Buddy</h1>
+			<nav id="nav">
+				<ul>
+					<li><a href={% url 'home:home_view' %}>Home</a></li>
+					<li><a href="bp.html">Add Data</a></li>
+					<li>
+						<a href="#" class="icon solid fa-angle-down">Statistics</a>
+						<ul>
+							<li><a href={% url 'home:monthly_view' %}>This Month</a></li>
+							<li><a href={% url 'home:weekly_view' %}>This Week</a></li>
+						</ul>
+					</li>
+					<li><a href={% url 'home:learnMore_view' %} >Learn More</a></li>
+
+				</ul>
+			</nav>
+		</header>
+
+
+		<div class="row" id="chartContainer" height="600px" width="1000px"></div>
+		<div class="row" style="padding-top: 10px;">
+			<h1>Trend: Decreasing -- Keep up the good work!</h1>
+		</div>
+		<script src={% static 'canvas.js' %}></script>
+
+	</div>
+
+{% endblock %}
