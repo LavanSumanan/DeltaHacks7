@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Patient Information</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <link rel="icon" href="CHANGE THIS">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shoelace-css/1.0.0-beta16/shoelace.css">
@@ -14,60 +14,61 @@
 
 </head>
 
-<body>
+<body class="is-preload">
 
-  <!-- Header -->
-    <header id="header">
-      <h1><span class="image left"><img src="images/Logo.png" alt="" /></span> Blood Pressure Buddy</h1>
-      <nav id="nav">
-        <ul>
-          <li><a href="generic.html">Home</a></li>
-          <li><a href="bp.html">Add Data</a></li>
-          <li>
-            <a href="#" class="icon solid fa-angle-down">Statistics</a>
-            <ul>
-              <li><a href="monthGraph.html">This Month</a></li>
-              <li><a href="weekGraph.html">This Week</a></li>
-            </ul>
-          </li>
-          <li><a href="learnmore.html">Learn More</a></li>
+    <div id="page-wrapper">
 
-        </ul>
-      </nav>
-    </header>
+        <!-- Header -->
+        <header id="header">
+            <h1>Home by HTML5 UP</h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="generic.html">Home</a></li>
+                    <li><a href="bp.html">Add Data</a></li>
+                    <li>
+                        <a href="#">Statistics</a>
+                        <ul>
+                            <li><a href="monthGraph.html">This Month</a></li>
+                            <li><a href="weekGraph.html">This Week</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="learnmore.html">Learn More</a></li>
 
-        <!-- <img class = "center" src = "CHANGE THIS" height = "100", width = "400"> -->
-
-        <section id="main" class="container">
-					<header>
-						<h2>Record Blood Pressure</h2>
-            <p id="recording-instructions">Press RECORD and allow access. Once voice is recorded, press save readings to add data.</p>
-					</header>
+                </ul>
+            </nav>
+        </header>
 
         <div class="container">
 
+            <!-- <img class = "center" src = "CHANGE THIS" height = "100", width = "400"> -->
 
-            <button class = "button" id="start-record-btn" title="Start Recording">RECORD</button>
-            <button class = "button" id="clear-record-btn" title="Pause Recording">CLEAR</button>
-            <br><br>
+            <div class="app">
+                <h3>Record Blood Pressure</h3>
+                <button id="start-record-btn" title="Start Recording">Record</button>
+                <button id="pause-record-btn" title="Pause Recording">Pause</button>
+                <button id="clear-record-btn" title="Clear Recording">Clear</button>
+                <button id="save-note-btn" title="Save Recording">Save</button>
+                <p id="recording-instructions">
+                    Click "Record" and say your blood pressure reading. Example: <em>"one hundred and twenty over eighty"</em>.<br>
+                    Click "Pause" to pause recording.<br>
+                    Click "Clear" to wipe the recording.<br>
+                    Click "Save" to save the recording.
+                </p>
+                <div class="input-single">
+                    <textarea id="note-textarea" placeholder='Click "Record" and allow access to begin.'
+                        rows="6"></textarea>
+                </div>
+                <br>
+                <h3>My Blood Pressure Readings</h3>
 
-            <div class = "box" class="input-single">
-                <textarea id="note-textarea" placeholder="Blood Pressure Readings" rows="6"></textarea>
-              <br>
-            </div>
-            <div class = "button large" class = "input-single"><class = "button large" id="save-note-btn" class =  title="Save Reading">Save Reading</button></div>
-            <br><br>
-            <h3>My Blood Pressure Readings</h3>
-            <div class = "box"
-            <h3>  </h3>
-            <ul id="notes">
-                <li>
-                    <p class="content">You don't have any prior blood pressure readings.</p>
-                </li>
-            </ul>
-          </div>
-            <div  class="sign-out-container">
-                <button class = "button large" id="sign-out" title="Sign Out">Sign Out</button>
+                <table id="notes">
+
+                </table>
+
+                <div class="sign-out-container">
+                    <button id="sign-out" title="Sign Out">Sign Out</button>
+                </div>
+
             </div>
 
         </div>
