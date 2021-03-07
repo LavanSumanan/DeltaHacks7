@@ -18,7 +18,7 @@
 			{% block middle_column %}
 				<section id="cta">
 
-					<h2>Log in to [ project name ]</h2>
+					<h2>Sign in to your account</h2>
 					<p>[ subheading ]</p>
 
 					<form method="post" action={% url 'login_view' %}>
@@ -37,7 +37,6 @@
 							</div>
 						</div>
 					</form>
-				{{ failed }}
 				</section>
 			{% endblock %}
 
